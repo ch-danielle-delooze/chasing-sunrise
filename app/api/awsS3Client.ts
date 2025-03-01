@@ -1,6 +1,6 @@
 import { S3Client } from "@aws-sdk/client-s3";
 
-const bucketName = "chasing-sunrise" ;
+const bucketName = "chasing-sunrise-pictures";
 
 const s3Client = new S3Client({
   credentials: {
