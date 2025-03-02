@@ -1,11 +1,17 @@
+import useSWR, { SWRResponse } from "swr";
 
-import useSWR from "swr";
+import { Folder } from "@/types";
 
-export function useGetFolders() {
+export function useGetFolders(): SWRResponse<Folder[], Error> {
   const url = "/api/folders";
-  const resp = useSWR(url);
+  const resp: SWRResponse<Folder[], Error> = useSWR(url, {
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  });
+
   if (resp.error) {
     console.error("Error fetching folders:", resp.error);
   }
+
   return resp;
 }

@@ -5,12 +5,9 @@ const bucketName = "chasing-sunrise-pictures";
 const s3Client = new S3Client({
   credentials: {
     accessKeyId: process.env.CHASING_SUNRISE_AWS_ACCESS_KEY_ID!,
-    secretAccessKey: process.env.CHASING_SUNRISE_AWS_SECRET_ACCESS_KEY!
+    secretAccessKey: process.env.CHASING_SUNRISE_AWS_SECRET_ACCESS_KEY!,
   },
-  region: process.env.CHASING_SUNRISE_AWS_REGION
+  region: process.env.CHASING_SUNRISE_AWS_REGION,
 });
 
-export {
-  s3Client,
-  bucketName
-}
+export { s3Client, bucketName };

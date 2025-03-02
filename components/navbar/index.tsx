@@ -16,6 +16,7 @@ import clsx from "clsx";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
+import ProjectsMenu from "@/components/navbar/ProjectsMenu";
 import {
   InstagramIcon,
   GithubIcon,
@@ -69,6 +70,9 @@ export const Navbar = () => {
               </NextLink>
             </NavbarItem>
           ))}
+          <NavbarItem>
+            <ProjectsMenu />
+          </NavbarItem>
         </ul>
       </NavbarContent>
 
@@ -96,7 +100,11 @@ export const Navbar = () => {
         <Link isExternal aria-label="Github" href={siteConfig.links.github}>
           <GithubIcon className="text-default-500" />
         </Link>
-        <Link isExternal aria-label="Instagram" href={siteConfig.links.instagram}>
+        <Link
+          isExternal
+          aria-label="Instagram"
+          href={siteConfig.links.instagram}
+        >
           <InstagramIcon className="text-default-500" />
         </Link>
         <ThemeSwitch />

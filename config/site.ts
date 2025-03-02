@@ -6,16 +6,8 @@ export const siteConfig = {
     "Photography website for viewing and downloading pictures from Kash Desai",
   navItems: [
     {
-      label: "Home",
-      href: "/",
-    },
-    {
       label: "Blog",
       href: "/blog",
-    },
-    {
-      label: "Projects",
-      href: "/projects",
     },
     {
       label: "About",
@@ -28,16 +20,12 @@ export const siteConfig = {
       href: "/blog",
     },
     {
-      label: "Projects",
-      href: "/projects",
-    },
-    {
       label: "About",
       href: "/about",
     },
   ],
   links: {
     github: "https://github.com/ch-danielle-delooze/chasing-sunrise",
-    instagram: "https://www.instagram.com/kash__desai"
+    instagram: "https://www.instagram.com/kash__desai",
   },
 };
