@@ -1,3 +1,4 @@
+"use client";
 import useSWR, { SWRResponse } from "swr";
 
 import { Folder } from "@/types";
@@ -8,7 +9,6 @@ export function useGetFolders(): SWRResponse<Folder[], Error> {
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
   });
-
   if (resp.error) {
     console.error("Error fetching folders:", resp.error);
   }
