@@ -54,7 +54,7 @@ export const InstagramIcon: React.FC<IconSvgProps> = ({
   ...props
 }) => {
   return (
-    <svg 
+    <svg
       height={size || height}
       viewBox="0 0 24 24"
       width={size || width}

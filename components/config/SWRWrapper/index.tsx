@@ -8,17 +8,21 @@ const SWRWrapper = ({ children }: { children: React.ReactNode }) => {
         fetcher: async (...args) => {
           // @ts-ignore
           const resp = await fetch(...args);
+
           if (!resp.ok) {
             console.error(`${resp.status} - ${resp.statusText}`);
+
             return {};
           }
           const respJson = await resp.json();
+
           return respJson;
-        }
+        },
       }}
     >
       {children}
     </SWRConfig>
   );
 };
+
 export default SWRWrapper;

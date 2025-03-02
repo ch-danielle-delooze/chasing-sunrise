@@ -1,24 +1,28 @@
-import { ChecksumType, ListObjectsCommand, ListObjectsCommandOutput } from "@aws-sdk/client-s3"
-import {} from "@aws-sdk/types"
-import { NextResponse } from "next/server"
+import {
+  ListObjectsCommand,
+  ListObjectsCommandOutput,
+} from "@aws-sdk/client-s3";
+import { NextResponse } from "next/server";
 
-import { s3Client, bucketName } from "../awsS3Client"
+import { s3Client, bucketName } from "../awsS3Client";
 
-type Folder = {
-  name: string
-  objects: string[]
-  subFolders: Folder[]
-}
+import { Folder } from "@/types";
 
 const findOrCreateFolder = (
   parentSubFolders: Folder[],
-  folderName: string
+  folderName: string,
 ): Folder => {
   const folder =
     parentSubFolders?.find((subFolder) => subFolder.name === folderName) ??
     (() => {
-      const newFolder: Folder = { name: folderName, subFolders: [], objects: [] };
+      const newFolder: Folder = {
+        name: folderName,
+        subFolders: [],
+        objects: [],
+      };
+
       parentSubFolders.push(newFolder);
+
       return newFolder;
     })();
 
@@ -26,7 +30,7 @@ const findOrCreateFolder = (
 };
 
 const convertListObjectResponseToFolderJson = (
-  output: ListObjectsCommandOutput
+  output: ListObjectsCommandOutput,
 ): Folder[] => {
   const result: Folder[] = [];
 
@@ -35,27 +39,34 @@ const convertListObjectResponseToFolderJson = (
 
     const folders = Key.split("/");
     let previousFolder: Folder | undefined = undefined;
+
     folders.forEach((folderName, index) => {
       const isLast = index === folders.length - 1;
+
       if (isLast) {
         previousFolder?.objects.push(Key);
       } else {
-        const folder = findOrCreateFolder(previousFolder?.subFolders ?? result, folderName);
+        const folder = findOrCreateFolder(
+          previousFolder?.subFolders ?? result,
+          folderName,
+        );
+
         previousFolder = folder;
       }
     });
   });
 
   return result;
-}
+};
 
 const GET = async () => {
   const command = new ListObjectsCommand({
     Bucket: bucketName,
-  })
-  const response = await s3Client.send(command)
-  const folders = convertListObjectResponseToFolderJson(response)
-  return NextResponse.json(folders)
-}
+  });
+  const response = await s3Client.send(command);
+  const folders = convertListObjectResponseToFolderJson(response);
+
+  return NextResponse.json(folders);
+};
 
 export { GET };
