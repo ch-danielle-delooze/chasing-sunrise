@@ -11,8 +11,6 @@ import { useGetFolders } from "@/app/requests/folders";
 const ProjectsMenu = () => {
   const { data } = useGetFolders();
 
-  console.log(data);
-
   return (
     <Dropdown>
       <DropdownTrigger>
