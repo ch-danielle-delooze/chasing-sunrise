@@ -9,6 +9,7 @@ export function useGetFolders(): SWRResponse<Folder[], Error> {
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
   });
+
   if (resp.error) {
     console.error("Error fetching folders:", resp.error);
   }

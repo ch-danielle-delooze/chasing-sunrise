@@ -40,6 +40,10 @@ const convertListObjectResponseToFolderJson = (
     const folders = Key.split("/");
     let previousFolder: Folder | undefined = undefined;
 
+    if (folders[folders.length - 1] === "") {
+      return;
+    }
+
     folders.forEach((folderName, index) => {
       const isLast = index === folders.length - 1;
 

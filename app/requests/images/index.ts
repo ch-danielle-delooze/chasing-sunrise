@@ -8,6 +8,7 @@ export function useGetImage(params: {
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
   });
+
   if (resp.error) {
     console.error("Error fetching image:", resp);
   }

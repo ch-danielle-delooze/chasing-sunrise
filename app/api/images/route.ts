@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import {
-  getSignedUrl
-} from "@aws-sdk/s3-request-presigner";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { GetObjectCommand } from "@aws-sdk/client-s3";
 
 import { s3Client, bucketName } from "../awsS3Client";
@@ -15,7 +13,8 @@ const GET = async (request: NextRequest) => {
   });
 
   const signedUrl = await getSignedUrl(s3Client, command, { expiresIn: 3600 });
-  return NextResponse.json(signedUrl)
-}
+
+  return NextResponse.json(signedUrl);
+};
 
 export { GET };
