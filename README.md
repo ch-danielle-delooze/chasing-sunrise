@@ -1,8 +1,8 @@
-# Next.js & HeroUI Template
+# Chasing Sunrise
 
-This is a template for creating applications using Next.js 14 (app directory) and HeroUI (v2).
+A little website for showing Photography! Built using Next.js, HeroUI (NextUI), Typescript, Tailwind, and deployed with Netlify.
 
-[Try it on CodeSandbox](https://githubbox.com/heroui-inc/heroui/next-app-template)
+Hosting the images in s3 and pulling them down from there.
 
 ## Technologies Used
 
@@ -16,13 +16,7 @@ This is a template for creating applications using Next.js 14 (app directory) an
 
 ## How to Use
 
-### Use the template with create-next-app
-
-To create a new project based on this template using `create-next-app`, run the following command:
-
-```bash
-npx create-next-app -e https://github.com/heroui-inc/next-app-template
-```
+`npm run dev` then hit `localhost:3000`
 
 ### Install dependencies
 
@@ -31,22 +25,6 @@ You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
 ```bash
 npm install
 ```
-
-### Run the development server
-
-```bash
-npm run dev
-```
-
-### Setup pnpm (optional)
-
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
-
-```bash
-public-hoist-pattern[]=*@heroui/*
-```
-
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
 
 ## License
 
