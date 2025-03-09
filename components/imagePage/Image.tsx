@@ -31,7 +31,7 @@ const ImageDisplay = ({ imagePath }: ImageProps) => {
   return (
     <Image
       alt="Image"
-      className="m-6 hover:scale-105 cursor-pointer"
+      className="md:m-6 my-2 hover:scale-105 cursor-pointer"
       src={data ?? undefined}
       onClick={downloadImage}
     />
