@@ -1,3 +1,4 @@
+"use client";
 import useSWR, { SWRResponse } from "swr";
 
 import { Folder } from "@/types";
