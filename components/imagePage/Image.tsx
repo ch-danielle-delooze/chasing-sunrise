@@ -32,6 +32,7 @@ const ImageDisplay = ({ imagePath }: ImageProps) => {
     <Image
       alt="Image"
       className="md:m-6 my-2"
+      height={400}
       src={data ?? undefined}
     />
   );
