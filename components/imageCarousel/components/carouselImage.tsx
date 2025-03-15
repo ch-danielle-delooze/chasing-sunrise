@@ -8,7 +8,7 @@ interface ImageProps {
   imagePath: string;
 }
 
-const cloudFrontUrl = process.env.NEXT_PUBLIC_CHASING_SUNRISE_CLOUDFRONT_DOMAIN
+const cloudFrontUrl = process.env.NEXT_PUBLIC_CHASING_SUNRISE_CLOUDFRONT_DOMAIN;
 
 const CarouselImage = ({ imagePath }: ImageProps) => {
   const [aspectRatio, setAspectRatio] = useState(0);
