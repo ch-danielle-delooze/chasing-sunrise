@@ -2,7 +2,6 @@
 import * as React from "react";
 
 import { useGetFolders } from "@/app/requests/folders";
-import ImagePage from "@/components/imagePage";
 import { title } from "@/components/primitives";
 import { formatFolderName } from "@/app/utils/string";
 import ImageCarousel from "@/components/imageCarousel";
@@ -24,9 +23,9 @@ export default function ImageFolderPage({ params }: ImageFolderPageProps) {
       {subFolders?.map((subFolder) => (
         <ImageCarousel
           key={subFolder.name}
-          imagePaths={subFolder.objects}
           folderName={subFolder.name}
-       />
+          imagePaths={subFolder.objects}
+        />
       ))}
     </div>
   );

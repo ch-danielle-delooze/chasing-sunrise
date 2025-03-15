@@ -28,14 +28,7 @@ const ImageDisplay = ({ imagePath }: ImageProps) => {
   //   document.body.removeChild(link);
   // };
 
-  return (
-    <Image
-      alt="Image"
-      className="md:m-6 my-2"
-      height={400}
-      src={data ?? undefined}
-    />
-  );
+  return <Image alt="Image" height={400} src={data ?? undefined} />;
 };
 
 export default ImageDisplay;
