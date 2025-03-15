@@ -1,3 +1,5 @@
+"use client";
+import { useState } from "react";
 import {
   Navbar as HeroUINavbar,
   NavbarContent,
@@ -16,7 +18,7 @@ import MobileNavbarMenu from "./components/MobileNavbarMenu";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
-import ProjectsMenu from "@/components/navbar/ProjectsMenu";
+import ProjectsMenu from "@/components/navbar/components/ProjectsMenu";
 import {
   InstagramIcon,
   GithubIcon,
@@ -25,6 +27,8 @@ import {
 } from "@/components/icons";
 
 export const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const searchInput = (
     <Input
       aria-label="Search"
@@ -47,7 +51,7 @@ export const Navbar = () => {
   );
 
   return (
-    <HeroUINavbar maxWidth="xl" position="sticky">
+    <HeroUINavbar maxWidth="xl" position="sticky" isMenuOpen={isMenuOpen}>
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
@@ -108,10 +112,9 @@ export const Navbar = () => {
           <InstagramIcon className="text-default-500" />
         </Link>
         <ThemeSwitch />
-        <NavbarMenuToggle />
+        <NavbarMenuToggle onChange={(isOpen) => setIsMenuOpen(isOpen)}/>
+        <MobileNavbarMenu setIsMenuOpen={setIsMenuOpen}/>
       </NavbarContent>
-
-      <MobileNavbarMenu />
     </HeroUINavbar>
   );
 };
