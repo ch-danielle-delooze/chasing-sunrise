@@ -8,17 +8,11 @@ import {
 import { useRouter } from "next/navigation";
 
 import { useGetFolders } from "@/app/requests/folders";
+import { formatFolderName } from "@/app/utils/string";
 
 const ProjectsMenu = () => {
   const { data } = useGetFolders();
   const router = useRouter();
-  console.log(data)
-
-  const formatFolderName = (name: string) => {
-    return name.replace(/-/g, " ").split(" ").map((word) => {
-      return word.charAt(0).toUpperCase() + word.slice(1);
-    }).join(" ");
-  }
 
   return (
     <Dropdown>

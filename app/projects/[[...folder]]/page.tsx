@@ -3,18 +3,31 @@ import * as React from "react";
 
 import { useGetFolders } from "@/app/requests/folders";
 import ImagePage from "@/components/imagePage";
+import { title } from "@/components/primitives";
+import { formatFolderName } from "@/app/utils/string";
+import ImageCarousel from "@/components/imageCarousel";
 interface ImageFolderPageProps {
   params: Promise<{ folder: string[] }>;
 }
 
 export default function ImageFolderPage({ params }: ImageFolderPageProps) {
   const { data } = useGetFolders();
-  const folder = React.use(params).folder;
+  const folder = React.use(params).folder[0];
 
-  // TODO: make this work for subfolders
-  const imagePaths = data?.find(
-    (dataFolder) => dataFolder.name === folder[0],
-  )?.objects;
+  const subFolders = data?.find(
+    (dataFolder) => dataFolder.name === folder,
+  )?.subFolders;
 
-  return <ImagePage imagesPaths={imagePaths ?? []} />;
+  return (
+    <div className="w-full space-y-6">
+      <div className={title()}>{formatFolderName(folder)}</div>
+      {subFolders?.map((subFolder) => (
+        <ImageCarousel
+          key={subFolder.name}
+          imagePaths={subFolder.objects}
+          folderName={subFolder.name}
+       />
+      ))}
+    </div>
+  );
 }
