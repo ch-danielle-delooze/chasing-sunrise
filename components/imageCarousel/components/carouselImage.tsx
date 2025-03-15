@@ -4,14 +4,13 @@ import { useState } from "react";
 
 import { CarouselItem } from "../../ui/carousel";
 
-import { useGetImage } from "@/app/requests/images";
-
 interface ImageProps {
   imagePath: string;
 }
 
+const cloudFrontUrl = process.env.NEXT_PUBLIC_CHASING_SUNRISE_CLOUDFRONT_DOMAIN
+
 const CarouselImage = ({ imagePath }: ImageProps) => {
-  const { data } = useGetImage({ key: imagePath });
   const [aspectRatio, setAspectRatio] = useState(0);
 
   const onImageLoad = (image: HTMLImageElement) => {
@@ -31,7 +30,7 @@ const CarouselImage = ({ imagePath }: ImageProps) => {
         alt="Image"
         height={400}
         radius="none"
-        src={data ?? undefined}
+        src={`${cloudFrontUrl}${imagePath}`}
         onLoad={(image) => onImageLoad(image.currentTarget)}
       />
     </CarouselItem>
