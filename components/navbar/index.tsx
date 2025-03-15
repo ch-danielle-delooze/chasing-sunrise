@@ -12,10 +12,11 @@ import { link as linkStyles } from "@heroui/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
 
+import MobileNavbarMenu from "./components/MobileNavbarMenu";
+
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import ProjectsMenu from "@/components/navbar/ProjectsMenu";
-import MobileNavbarMenu from "./components/MobileNavbarMenu";
 import {
   InstagramIcon,
   GithubIcon,
@@ -111,7 +112,6 @@ export const Navbar = () => {
       </NavbarContent>
 
       <MobileNavbarMenu />
-
     </HeroUINavbar>
   );
 };

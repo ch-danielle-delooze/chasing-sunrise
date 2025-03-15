@@ -8,6 +8,7 @@ import {
 import { useRouter } from "next/navigation";
 
 import { useGetFolders } from "@/app/requests/folders";
+import { formatFolderName } from "@/app/utils/string";
 
 const ProjectsMenu = () => {
   const { data } = useGetFolders();
@@ -24,7 +25,7 @@ const ProjectsMenu = () => {
             key={item.name}
             onPress={() => router.push(`/projects/${item.name}`)}
           >
-            {item.name}
+            {formatFolderName(item.name)}
           </DropdownItem>
         )}
       </DropdownMenu>
