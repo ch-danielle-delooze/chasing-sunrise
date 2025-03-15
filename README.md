@@ -1,8 +1,8 @@
 # Chasing Sunrise
 
-A little website for showing Photography! Built using Next.js, HeroUI (NextUI), Typescript, Tailwind, and deployed with Netlify.
+A little website for showing Photography! Built using Next.js, HeroUI (NextUI), ShadUI (Carousel), Typescript, Tailwind, and deployed with Netlify.
 
-Hosting the images in s3 and pulling them down from there.
+Hosting the images in S3 and using CloudFront (CDN) to speed up load times.
 
 ## Technologies Used
 
@@ -13,6 +13,9 @@ Hosting the images in s3 and pulling them down from there.
 - [TypeScript](https://www.typescriptlang.org/)
 - [Framer Motion](https://www.framer.com/motion/)
 - [next-themes](https://github.com/pacocoursey/next-themes)
+- [ShadUI Carousel](https://ui.shadcn.com/docs/components/carousel)
+- [AWS S3](https://aws.amazon.com/pm/serv-s3/?gclid=EAIaIQobChMIq4yrh96MjAMV3zStBh282SwzEAAYASAAEgLYuPD_BwE&trk=20e04791-939c-4db9-8964-ee54c41bc6ad&sc_channel=ps&ef_id=EAIaIQobChMIq4yrh96MjAMV3zStBh282SwzEAAYASAAEgLYuPD_BwE:G:s&s_kwcid=AL!4422!3!651751060962!e!!g!!aws%20s3!19852662362!145019251177)
+- [AWS CloudFront](https://aws.amazon.com/cloudfront/)
 
 ## How to Use
 
