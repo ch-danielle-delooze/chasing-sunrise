@@ -6,19 +6,11 @@ export const siteConfig = {
     "Photography website for viewing and downloading pictures from Kash Desai",
   navItems: [
     {
-      label: "Blog",
-      href: "/blog",
-    },
-    {
       label: "About",
       href: "/about",
     },
   ],
   navMenuItems: [
-    {
-      label: "Blog",
-      href: "/blog",
-    },
     {
       label: "About",
       href: "/about",
