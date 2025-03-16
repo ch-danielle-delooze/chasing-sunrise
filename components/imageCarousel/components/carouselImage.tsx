@@ -30,10 +30,12 @@ const CarouselImage = ({ imagePath, containerWidth }: CarouselImageProps) => {
     setAspectRatio(aspectRatio);
   };
 
+  
+
   return (
     <CarouselItem
       className={`
-      ${aspectRatio > 1 ? "md:basis-1/5 basis-3/5" : ""}
+      ${aspectRatio > 1 ? "md:basis-1/5 basis-4/10" : ""}
       ${aspectRatio < 1 ? "md:basis-1/2" : ""}
     `}
     >
