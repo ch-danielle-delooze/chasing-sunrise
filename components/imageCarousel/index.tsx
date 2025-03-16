@@ -1,5 +1,6 @@
 "use client";
 import { useRef } from "react";
+
 import { subtitle } from "@/components/primitives";
 import { formatFolderName } from "@/app/utils/string";
 import CarouselImage from "@/components/imageCarousel/components/carouselImage";
@@ -23,10 +24,14 @@ const ImageCarousel = ({ imagePaths, folderName }: ImageCarouselProps) => {
   return (
     <div ref={containerRef}>
       <div className={subtitle()}>{formatFolderName(folderName)}</div>
-      <Carousel >
+      <Carousel>
         <CarouselContent>
           {imagePaths.map((imagePath) => (
-            <CarouselImage key={imagePath} imagePath={imagePath} containerWidth={containerRef?.current?.clientWidth}/>
+            <CarouselImage
+              key={imagePath}
+              containerWidth={containerRef?.current?.clientWidth}
+              imagePath={imagePath}
+            />
           ))}
         </CarouselContent>
         {/* If the device is a touch device, we don't want to show the previous and next buttons */}
