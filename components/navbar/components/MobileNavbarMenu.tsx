@@ -3,8 +3,7 @@ import { NavbarMenuItem, NavbarMenu } from "@heroui/navbar";
 import { Divider } from "@heroui/divider";
 import Link from "next/link";
 import clsx from "clsx";
-import { usePathname } from 'next/navigation'
-
+import { usePathname } from "next/navigation";
 import { link as linkStyles } from "@heroui/theme";
 
 import { siteConfig } from "@/config/site";
@@ -16,14 +15,14 @@ interface MobileNavbarMenuProps {
   setIsMenuOpen: (isOpen: boolean) => void;
 }
 
-const MobileNavbarMenu = ({ setIsMenuOpen}: MobileNavbarMenuProps) => {
+const MobileNavbarMenu = ({ setIsMenuOpen }: MobileNavbarMenuProps) => {
   const { data: folders } = useGetFolders();
 
   const pathName = usePathname();
 
   const closeNavBarMenu = () => {
     setIsMenuOpen(false);
-  }
+  };
 
   return (
     <NavbarMenu>
@@ -49,6 +48,7 @@ const MobileNavbarMenu = ({ setIsMenuOpen}: MobileNavbarMenuProps) => {
           <Divider />
           {folders?.map((folder) => {
             const href = `/projects/${folder.name}`;
+
             return (
               <Link
                 key={folder.name}
@@ -62,7 +62,7 @@ const MobileNavbarMenu = ({ setIsMenuOpen}: MobileNavbarMenuProps) => {
               >
                 {formatFolderName(folder.name)}
               </Link>
-            )
+            );
           })}
         </NavbarMenuItem>
       </div>

@@ -51,7 +51,7 @@ export const Navbar = () => {
   );
 
   return (
-    <HeroUINavbar maxWidth="xl" position="sticky" isMenuOpen={isMenuOpen}>
+    <HeroUINavbar isMenuOpen={isMenuOpen} maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
@@ -112,8 +112,8 @@ export const Navbar = () => {
           <InstagramIcon className="text-default-500" />
         </Link>
         <ThemeSwitch />
-        <NavbarMenuToggle onChange={(isOpen) => setIsMenuOpen(isOpen)}/>
-        <MobileNavbarMenu setIsMenuOpen={setIsMenuOpen}/>
+        <NavbarMenuToggle onChange={(isOpen) => setIsMenuOpen(isOpen)} />
+        <MobileNavbarMenu setIsMenuOpen={setIsMenuOpen} />
       </NavbarContent>
     </HeroUINavbar>
   );

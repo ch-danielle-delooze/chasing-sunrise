@@ -14,4 +14,4 @@ export const fontMono = FontMono({
 export const fontChasingSunrise = localFont({
   src: "../public/fonts/ChasingSunrise-Regular.ttf",
   variable: "--font-chasing-sunrise",
-})
+});
