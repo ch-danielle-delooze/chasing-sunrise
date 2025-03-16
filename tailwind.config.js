@@ -15,7 +15,10 @@ module.exports = {
   			],
   			mono: [
   				'var(--font-mono)'
-  			]
+  			],
+			chasingSunrise: [
+				'var(--font-chasing-sunrise)'
+			]
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
