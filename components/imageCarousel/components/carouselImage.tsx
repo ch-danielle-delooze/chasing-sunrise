@@ -1,6 +1,6 @@
 "use client";
 import { Image } from "@heroui/image";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { CarouselItem } from "@/components/ui/carousel";
 
 import useIsTouchDevice from "@/app/utils/device";
@@ -24,9 +24,16 @@ const CarouselImage = ({ imagePath, containerWidth }: CarouselImageProps) => {
       return containerWidth / 1.5;
     }
   }
+  const touchDeviceHeight = useMemo(() => getTouchDeviceHeight(), [isTouchDevice]);
+
+  const getTouchDeviceDynamicBasis = () => {
+    const imageWidth = touchDeviceHeight * (2/3);
+    const imageBasis = imageWidth / containerWidth;
+    return `basis-${imageBasis}`;
+  }
 
   const onImageLoad = (image: HTMLImageElement) => {
-    const aspectRatio = image.naturalHeight / image.naturalWidth;
+    const aspectRatio = image.naturalWidth / image.naturalHeight;
     setAspectRatio(aspectRatio);
   };
 
@@ -35,13 +42,13 @@ const CarouselImage = ({ imagePath, containerWidth }: CarouselImageProps) => {
   return (
     <CarouselItem
       className={`
-      ${aspectRatio > 1 ? "md:basis-1/5 basis-4/10" : ""}
-      ${aspectRatio < 1 ? "md:basis-1/2" : ""}
+      ${aspectRatio < 1 ? `md:basis-1/5 ${getTouchDeviceDynamicBasis()}` : ""}
+      ${aspectRatio > 1 ? "md:basis-1/2" : ""}
     `}
     >
       <Image
         alt="Image"
-        height={isTouchDevice ? getTouchDeviceHeight() :400}
+        height={isTouchDevice ? touchDeviceHeight : 400}
         radius="none"
         src={`${cloudFrontUrl}${imagePath}`}
         onLoad={(image) => onImageLoad(image.currentTarget)}
