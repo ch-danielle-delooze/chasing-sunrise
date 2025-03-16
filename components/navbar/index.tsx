@@ -14,6 +14,8 @@ import { link as linkStyles } from "@heroui/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
 
+import { title } from "../primitives";
+
 import MobileNavbarMenu from "./components/MobileNavbarMenu";
 
 import { siteConfig } from "@/config/site";
@@ -56,7 +58,9 @@ export const Navbar = () => {
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
             <Logo />
-            <p className="font-bold text-inherit">Chasing Sunrises</p>
+            <span className={clsx(title({ size: "md" }), "md:-mt-3 -mt-2")}>
+              Chasing Sunrise
+            </span>
           </NextLink>
         </NavbarBrand>
         <ul className="hidden lg:flex gap-4 justify-start ml-2">
