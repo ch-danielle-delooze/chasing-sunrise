@@ -15,7 +15,7 @@ const FancyParagraph = ({ text }: FancyParagraphProps) => {
       <span
         className={clsx(
           title({ size: "xl" }),
-          "h-[90px]",
+          "md:h-[90px] h-[40px]",
           "float-start",
           "tracking-[0.03rem]",
           "font-chasingSunrise",
