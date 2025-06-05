@@ -25,7 +25,6 @@ import {
   InstagramIcon,
   GithubIcon,
   SearchIcon,
-  Logo,
 } from "@/components/icons";
 
 export const Navbar = () => {
@@ -57,7 +56,6 @@ export const Navbar = () => {
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
-            <Logo />
             <span className={clsx(title({ size: "md" }), "md:-mt-3 -mt-2")}>
               Chasing Sunrise
             </span>
