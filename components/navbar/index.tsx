@@ -21,11 +21,7 @@ import MobileNavbarMenu from "./components/MobileNavbarMenu";
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import ProjectsMenu from "@/components/navbar/components/ProjectsMenu";
-import {
-  InstagramIcon,
-  GithubIcon,
-  SearchIcon,
-} from "@/components/icons";
+import { InstagramIcon, GithubIcon, SearchIcon } from "@/components/icons";
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
