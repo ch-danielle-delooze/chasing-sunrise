@@ -20,6 +20,7 @@ import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import ProjectsMenu from "@/components/navbar/components/ProjectsMenu";
 import { InstagramIcon, GithubIcon } from "@/components/icons";
+import { useRouter } from "next/navigation";
 
 const IconActions = () => {
   return (
@@ -36,8 +37,11 @@ const IconActions = () => {
 };
 
 export const Navbar = () => {
+  const path = window.location.pathname
+  const defaultTab = path.indexOf("/", 1) === -1 ? path : path.slice(0, path.indexOf("/", 1));
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectedTab, setSelectedTab] = useState<string | null>(null);
+  const [selectedTab, setSelectedTab] = useState<string | null>(defaultTab);
 
   return (
     <HeroUINavbar isMenuOpen={isMenuOpen} maxWidth="xl" position="sticky">
