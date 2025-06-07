@@ -7,9 +7,7 @@ import {
   NavbarBrand,
   NavbarItem,
 } from "@heroui/navbar";
-import { Kbd } from "@heroui/kbd";
 import { Link } from "@heroui/link";
-import { Input } from "@heroui/input";
 import { link as linkStyles } from "@heroui/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
@@ -21,31 +19,25 @@ import MobileNavbarMenu from "./components/MobileNavbarMenu";
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import ProjectsMenu from "@/components/navbar/components/ProjectsMenu";
-import { InstagramIcon, GithubIcon, SearchIcon } from "@/components/icons";
+import { InstagramIcon, GithubIcon } from "@/components/icons";
+
+const IconActions = () => {
+  return (
+    <>
+      <Link isExternal aria-label="Github" href={siteConfig.links.github}>
+        <GithubIcon className="text-default-500" />
+      </Link>
+      <Link isExternal aria-label="Instagram" href={siteConfig.links.instagram}>
+        <InstagramIcon className="text-default-500" />
+      </Link>
+      <ThemeSwitch />
+    </>
+  );
+};
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const searchInput = (
-    <Input
-      aria-label="Search"
-      classNames={{
-        inputWrapper: "bg-default-100",
-        input: "text-sm",
-      }}
-      endContent={
-        <Kbd className="hidden lg:inline-block" keys={["command"]}>
-          K
-        </Kbd>
-      }
-      labelPlacement="outside"
-      placeholder="Search..."
-      startContent={
-        <SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
-      }
-      type="search"
-    />
-  );
+  const [selectedTab, setSelectedTab] = useState<string | null>(null);
 
   return (
     <HeroUINavbar isMenuOpen={isMenuOpen} maxWidth="xl" position="sticky">
@@ -83,33 +75,12 @@ export const Navbar = () => {
         justify="end"
       >
         <NavbarItem className="hidden sm:flex gap-2">
-          <Link isExternal aria-label="Github" href={siteConfig.links.github}>
-            <GithubIcon className="text-default-500" />
-          </Link>
-          <Link
-            isExternal
-            aria-label="Instagram"
-            href={siteConfig.links.instagram}
-          >
-            <InstagramIcon className="text-default-500" />
-          </Link>
-          <ThemeSwitch />
+          <IconActions />
         </NavbarItem>
-        <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <Link isExternal aria-label="Github" href={siteConfig.links.github}>
-          <GithubIcon className="text-default-500" />
-        </Link>
-        <Link
-          isExternal
-          aria-label="Instagram"
-          href={siteConfig.links.instagram}
-        >
-          <InstagramIcon className="text-default-500" />
-        </Link>
-        <ThemeSwitch />
+        <IconActions />
         <NavbarMenuToggle onChange={(isOpen) => setIsMenuOpen(isOpen)} />
         <MobileNavbarMenu setIsMenuOpen={setIsMenuOpen} />
       </NavbarContent>
