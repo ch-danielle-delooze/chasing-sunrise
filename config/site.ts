@@ -18,6 +18,6 @@ export const siteConfig = {
   ],
   links: {
     github: "https://github.com/ch-danielle-delooze/chasing-sunrise",
-    instagram: "https://www.instagram.com/kash__desai",
+    instagram: "https://www.instagram.com/chasing_sunrise_photograpy/",
   },
 };
