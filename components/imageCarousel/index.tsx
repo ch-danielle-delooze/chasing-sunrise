@@ -24,7 +24,11 @@ const ImageCarousel = ({ imagePaths, folderName }: ImageCarouselProps) => {
   return (
     <div ref={containerRef}>
       <div className={subtitle()}>{formatFolderName(folderName)}</div>
-      <Carousel>
+      <Carousel
+        opts={{
+          loop: true,
+        }}
+      >
         <CarouselContent>
           {imagePaths.map((imagePath) => (
             <CarouselImage
