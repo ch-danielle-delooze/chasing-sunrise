@@ -23,23 +23,22 @@ const ProjectsMenu = ({ setSelectedTab, selectedTab }: ProjectsMenuProps) => {
   const openProject = (projectPath: string) => {
     setSelectedTab("/projects");
     router.push(`/projects/${projectPath}`);
-  }
+  };
 
   return (
     <Dropdown>
       <DropdownTrigger>
-        <button className={
-          clsx(
+        <button
+          className={clsx(
             selectedTab === "/projects" ? "font-medium" : "text-gray-500",
-          )
-        }>Projects</button>
+          )}
+        >
+          Projects
+        </button>
       </DropdownTrigger>
       <DropdownMenu aria-label="Dynamic Actions" items={data}>
         {(item) => (
-          <DropdownItem
-            key={item.name}
-            onPress={() => openProject(item.name)}
-          >
+          <DropdownItem key={item.name} onPress={() => openProject(item.name)}>
             {formatFolderName(item.name)}
           </DropdownItem>
         )}
