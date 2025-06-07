@@ -11,6 +11,7 @@ import { Link } from "@heroui/link";
 import { link as linkStyles } from "@heroui/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
+import { usePathname } from "next/navigation";
 
 import { title } from "../primitives";
 
@@ -20,8 +21,6 @@ import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import ProjectsMenu from "@/components/navbar/components/ProjectsMenu";
 import { InstagramIcon, GithubIcon } from "@/components/icons";
-import { useRouter } from "next/navigation";
-
 const IconActions = () => {
   return (
     <>
@@ -37,8 +36,9 @@ const IconActions = () => {
 };
 
 export const Navbar = () => {
-  const path = window.location.pathname
-  const defaultTab = path.indexOf("/", 1) === -1 ? path : path.slice(0, path.indexOf("/", 1));
+  const path = usePathname();
+  const defaultTab =
+    path.indexOf("/", 1) === -1 ? path : path.slice(0, path.indexOf("/", 1));
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState<string | null>(defaultTab);
@@ -47,7 +47,11 @@ export const Navbar = () => {
     <HeroUINavbar isMenuOpen={isMenuOpen} maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
-          <NextLink className="flex justify-start items-center gap-1" href="/">
+          <NextLink
+            className="flex justify-start items-center gap-1"
+            href="/"
+            onClick={() => setSelectedTab("/")}
+          >
             <span className={clsx(title({ size: "md" }), "md:-mt-3 -mt-2")}>
               Chasing Sunrise
             </span>
