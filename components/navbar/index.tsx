@@ -38,7 +38,7 @@ const IconActions = () => {
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState<string | null>(null);
-
+  console.log("Selected Tab:", selectedTab);
   return (
     <HeroUINavbar isMenuOpen={isMenuOpen} maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -55,17 +55,18 @@ export const Navbar = () => {
               <NextLink
                 className={clsx(
                   linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium",
+                  selectedTab === item.href ? "font-medium" : "text-gray-500",
                 )}
                 color="foreground"
                 href={item.href}
+                onClick={() => setSelectedTab(item.href)}
               >
                 {item.label}
               </NextLink>
             </NavbarItem>
           ))}
           <NavbarItem>
-            <ProjectsMenu />
+            <ProjectsMenu setSelectedTab={setSelectedTab} selectedTab={selectedTab}/>
           </NavbarItem>
         </ul>
       </NavbarContent>
