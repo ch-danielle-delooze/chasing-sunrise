@@ -7,11 +7,12 @@ import useIsTouchDevice from "@/app/utils/device";
 interface CarouselImageProps {
   imagePath: string;
   containerWidth: number;
+  blurDataUrl: string;
 }
 
 const cloudFrontUrl = process.env.NEXT_PUBLIC_CHASING_SUNRISE_CLOUDFRONT_DOMAIN;
 
-const CarouselImage = ({ imagePath, containerWidth }: CarouselImageProps) => {
+const CarouselImage = ({ imagePath,blurDataUrl, containerWidth }: CarouselImageProps) => {
   const [aspectRatio, setAspectRatio] = useState(0);
   const isTouchDevice = useIsTouchDevice();
 
@@ -42,13 +43,21 @@ const CarouselImage = ({ imagePath, containerWidth }: CarouselImageProps) => {
   };
 
   return (
-    <CarouselItem>
+    <CarouselItem
+      style={{
+        width: getImageWidth(),
+        height: isTouchDevice ? touchDeviceHeight : 400,
+      }}
+    >
       <Image
         alt="Image"
-        height={isTouchDevice ? touchDeviceHeight : 400}
         src={`${cloudFrontUrl}${imagePath}`}
         width={getImageWidth()}
+        height={isTouchDevice ? touchDeviceHeight : 400}
+        className="w-full h-full"
         onLoad={(image) => onImageLoad(image.currentTarget)}
+        placeholder="blur"
+        blurDataURL={blurDataUrl}
       />
     </CarouselItem>
   );

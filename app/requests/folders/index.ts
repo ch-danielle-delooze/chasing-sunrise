@@ -13,6 +13,7 @@ export function useGetFolders(): SWRResponse<Folder[], Error> {
   if (resp.error) {
     console.error("Error fetching folders:", resp.error);
   }
+  console.log(resp.data, "folders data");
 
   return resp;
 }

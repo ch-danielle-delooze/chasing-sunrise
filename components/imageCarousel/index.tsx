@@ -11,13 +11,14 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import useIsTouchDevice from "@/app/utils/device";
+import { FolderObject } from "@/types";
 
 interface ImageCarouselProps {
   folderName: string;
-  imagePaths: string[];
+  imageObjects: FolderObject[];
 }
 
-const ImageCarousel = ({ imagePaths, folderName }: ImageCarouselProps) => {
+const ImageCarousel = ({ imageObjects, folderName }: ImageCarouselProps) => {
   const isTouchDevice = useIsTouchDevice();
   const containerRef = useRef<any>();
 
@@ -30,11 +31,12 @@ const ImageCarousel = ({ imagePaths, folderName }: ImageCarouselProps) => {
         }}
       >
         <CarouselContent>
-          {imagePaths.map((imagePath) => (
+          {imageObjects.map((imageObject) => (
             <CarouselImage
-              key={imagePath}
+              key={imageObject.path}
               containerWidth={containerRef?.current?.clientWidth}
-              imagePath={imagePath}
+              imagePath={imageObject.path}
+              blurDataUrl={imageObject.dataImageUrl}
             />
           ))}
         </CarouselContent>

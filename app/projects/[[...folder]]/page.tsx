@@ -24,7 +24,7 @@ export default function ImageFolderPage({ params }: ImageFolderPageProps) {
         <ImageCarousel
           key={subFolder.name}
           folderName={subFolder.name}
-          imagePaths={subFolder.objects}
+          imageObjects={subFolder.objects}
         />
       ))}
     </div>

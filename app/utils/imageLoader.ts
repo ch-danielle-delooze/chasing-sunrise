@@ -5,7 +5,12 @@ export default function AWSImageLoader({
   width,
   quality,
 }: ImageLoaderProps) {
+  const url = new URL(src);
+  url.searchParams.set('format', 'auto');
   if (quality) {
-    return `${src}?format=auto&quality=${quality}&width=${width}`;
-  } else return `${src}?format=auto&width=${width}`;
+    url.searchParams.set('quality', quality.toString());
+  }
+  url.searchParams.set('width', width.toString());
+  console.log("AWSImageLoader URL:", url.href);
+  return url.href
 }
