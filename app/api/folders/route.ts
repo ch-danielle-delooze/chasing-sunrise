@@ -32,10 +32,14 @@ const findOrCreateFolder = (
 const convertListObjectResponseToFolderJson = (
   output: ListObjectsCommandOutput,
 ): Folder[] => {
+  const folderPathsToIgnore = ["page-content"];
   const result: Folder[] = [];
 
   output.Contents?.forEach(({ Key, ChecksumType }) => {
     if (!Key || !ChecksumType) return;
+    if (folderPathsToIgnore.some((path) => Key.startsWith(path))) {
+      return;
+    }
 
     const folders = Key.split("/");
     let previousFolder: Folder | undefined = undefined;

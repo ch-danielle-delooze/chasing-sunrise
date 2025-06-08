@@ -23,7 +23,7 @@ const FancyParagraph = ({ text }: FancyParagraphProps) => {
       >
         {firstCharacter}
       </span>
-      <span>{restOfText}</span>
+      <span className="whitespace-break-spaces">{restOfText}</span>
     </div>
   );
 };
