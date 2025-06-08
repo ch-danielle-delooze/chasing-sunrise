@@ -54,7 +54,7 @@ export const subtitle = tv({
 });
 
 export const fineprint = tv({
-  base: "w-full inline text-left my-2  max-w-full",
+  base: "w-full inline text-left my-2 max-w-full",
   variants: {
     fullWidth: {
       true: "!w-full",
