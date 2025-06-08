@@ -81,7 +81,7 @@ export default function AboutPage() {
             CloudFront in front of a couple of s3 bucket for image hosting. It
             was fun learning how to handle large image hosting and optimization!
             I&apos;ve oddly never needed to deal with that in my day jobs
-            before. The code is public on github. Feel free to take a look and
+            before. The code is public on GitHub. Feel free to take a look and
             send any questions/suggestions to me.
           </span>
           <span>Warmly,</span>
