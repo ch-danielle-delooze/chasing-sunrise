@@ -5,6 +5,7 @@ import { useGetFolders } from "@/app/requests/folders";
 import { title } from "@/components/primitives";
 import { formatFolderName } from "@/app/utils/string";
 import ImageCarousel from "@/components/imageCarousel";
+
 interface ImageFolderPageProps {
   params: Promise<{ folder: string[] }>;
 }
