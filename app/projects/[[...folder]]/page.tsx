@@ -24,6 +24,7 @@ export default function ImageFolderPage({ params }: ImageFolderPageProps) {
       {subFolders?.map((subFolder) => (
         <ImageCarousel
           key={subFolder.name}
+          albumPath={`${folder}/${subFolder.name}`}
           folderName={subFolder.name}
           imagePaths={subFolder.objects}
         />

@@ -1,6 +1,7 @@
 "use client";
 import { useRef } from "react";
 import clsx from "clsx";
+import { useRouter } from "next/navigation";
 
 import { subtitle } from "@/components/primitives";
 import { formatFolderName } from "@/app/utils/string";
@@ -16,11 +17,21 @@ import useIsTouchDevice from "@/app/utils/device";
 interface ImageCarouselProps {
   folderName: string;
   imagePaths: string[];
+  albumPath: string;
 }
 
-const ImageCarousel = ({ imagePaths, folderName }: ImageCarouselProps) => {
+const ImageCarousel = ({
+  imagePaths,
+  folderName,
+  albumPath,
+}: ImageCarouselProps) => {
+  const router = useRouter();
   const isTouchDevice = useIsTouchDevice();
   const containerRef = useRef<any>();
+
+  const navigateToAlbum = (albumPath: string) => {
+    router.push(`/album/${albumPath}`);
+  };
 
   return (
     <div ref={containerRef}>
@@ -29,6 +40,7 @@ const ImageCarousel = ({ imagePaths, folderName }: ImageCarouselProps) => {
           subtitle({ fullWidth: false }),
           "cursor-pointer w-fit transition delay-100 ease-in-out hover:scale-110 hover:text-black",
         )}
+        onClick={() => navigateToAlbum(albumPath)}
       >
         {formatFolderName(folderName)}
       </div>
