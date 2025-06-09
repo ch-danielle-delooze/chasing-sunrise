@@ -42,12 +42,7 @@ const CarouselImage = ({ imagePath, containerWidth }: CarouselImageProps) => {
   };
 
   return (
-    <CarouselItem
-      style={{
-        width: getImageWidth(),
-        height: isTouchDevice ? touchDeviceHeight : 400,
-      }}
-    >
+    <CarouselItem>
       <Image
         alt="Image"
         height={isTouchDevice ? touchDeviceHeight : 400}
