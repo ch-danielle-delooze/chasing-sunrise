@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
-import { title } from "@/components/primitives";
+
+import FancyParagraph from "../fancyParagraph";
 
 interface PictureOfTheDayProps {
   imageSrc: string;
@@ -32,7 +33,7 @@ export default function PictureOfTheDay({
 
       {/* Text content on the right */}
       <div className="flex flex-col space-y-4 text-justify flex-1">
-        <h2 className={title({ size: "md" })}>Picture of the Day</h2>
+        <FancyParagraph text={description} />
         {date && (
           <p className="text-sm text-gray-600 dark:text-gray-400">{date}</p>
         )}
@@ -41,9 +42,7 @@ export default function PictureOfTheDay({
             📍 {location}
           </p>
         )}
-        <p className="text-lg leading-relaxed">{description}</p>
       </div>
     </div>
   );
 }
-

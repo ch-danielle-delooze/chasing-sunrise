@@ -1,6 +1,7 @@
 import {
   ListObjectsV2Command,
   ListObjectsV2CommandOutput,
+  HeadObjectCommand,
 } from "@aws-sdk/client-s3";
 import { NextResponse } from "next/server";
 
@@ -12,31 +13,67 @@ interface PictureOfTheDayObject {
   key: string;
   lastModified?: Date;
   size?: number;
+  metadata?: Record<string, string>;
 }
 
-const convertListObjectResponseToPictureArray = (
+const fetchMetadataForObject = async (key: string) => {
+  try {
+    const command = new HeadObjectCommand({
+      Bucket: bucketName,
+      Key: key,
+    });
+    const response = await s3Client.send(command);
+
+    return response.Metadata || {};
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(`Error fetching metadata for ${key}:`, error);
+
+    return {};
+  }
+};
+
+const convertListObjectResponseToPictureArray = async (
   output: ListObjectsV2CommandOutput,
-): PictureOfTheDayObject[] => {
+): Promise<PictureOfTheDayObject[]> => {
   const result: PictureOfTheDayObject[] = [];
 
-  output.Contents?.forEach(({ Key, LastModified, Size }) => {
-    if (!Key) return;
+  // Filter for image files first
+  const imageObjects =
+    output.Contents?.filter(({ Key }) => {
+      if (!Key) return false;
 
-    // Skip if it's just a folder (ends with /)
-    if (Key.endsWith("/")) return;
+      // Skip if it's just a folder (ends with /)
+      if (Key.endsWith("/")) return false;
 
-    // Only include image files
-    const imageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
-    const hasImageExtension = imageExtensions.some((ext) =>
-      Key.toLowerCase().endsWith(ext),
-    );
+      // Only include image files
+      const imageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
 
-    if (hasImageExtension) {
-      result.push({
+      return imageExtensions.some((ext) => Key.toLowerCase().endsWith(ext));
+    }) || [];
+
+  // Fetch metadata for each image in parallel
+  const picturePromises = imageObjects.map(
+    async ({ Key, LastModified, Size }) => {
+      if (!Key) return null;
+
+      const metadata = await fetchMetadataForObject(Key);
+
+      return {
         key: Key,
         lastModified: LastModified,
         size: Size,
-      });
+        metadata,
+      };
+    },
+  );
+
+  const pictures = await Promise.all(picturePromises);
+
+  // Filter out null values and add to result
+  pictures.forEach((picture) => {
+    if (picture) {
+      result.push(picture);
     }
   });
 
@@ -50,6 +87,15 @@ const convertListObjectResponseToPictureArray = (
   return result;
 };
 
+const getTodayDateString = (): string => {
+  const today = new Date();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+  const year = today.getFullYear();
+
+  return `${month}-${day}-${year}`;
+};
+
 const GET = async () => {
   const command = new ListObjectsV2Command({
     Bucket: bucketName,
@@ -57,9 +103,15 @@ const GET = async () => {
   });
 
   const response = await s3Client.send(command);
-  const pictures = convertListObjectResponseToPictureArray(response);
+  const pictures = await convertListObjectResponseToPictureArray(response);
 
-  return NextResponse.json(pictures);
+  // Filter to only return pictures with today's date
+  const todayDate = getTodayDateString();
+  const todaysPictures = pictures.find(
+    (picture) => picture.metadata?.date === todayDate,
+  );
+
+  return NextResponse.json(todaysPictures);
 };
 
 export { GET };

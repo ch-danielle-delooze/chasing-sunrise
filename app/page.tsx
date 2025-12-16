@@ -1,29 +1,25 @@
 "use client";
+import { useGetPictureOfTheDay } from "./requests/pictureOfTheDay";
+
 import { title, subtitle } from "@/components/primitives";
 import PictureOfTheDay from "@/components/pictureOfTheDay";
-
-import { useGetPictureOfTheDay } from "./requests/pictureOfTheDay";
 
 export default function Home() {
   const cloudFrontUrl =
     process.env.NEXT_PUBLIC_CHASING_SUNRISE_CLOUDFRONT_DOMAIN;
 
   const { data } = useGetPictureOfTheDay();
-  console.log(data)
 
-  // Configure your picture of the day here
   const pictureOfTheDay = {
-    imageSrc: `${cloudFrontUrl}page-content/picture-of-the-day/sample.jpg`, // Update with your image path
-    imageAlt: "Picture of the Day",
+    imageSrc: `${cloudFrontUrl}${data?.key}`,
     date: new Date().toLocaleDateString("en-US", {
       weekday: "long",
       year: "numeric",
       month: "long",
       day: "numeric",
     }),
-    location: "Location Name", // Update with the location
-    description:
-      "Add your description here about what makes this photograph special. You can describe the moment it was captured, the lighting conditions, or any interesting story behind the shot.", // Update with your description
+    location: data?.metadata?.location,
+    description: data?.metadata?.description,
   };
 
   return (
