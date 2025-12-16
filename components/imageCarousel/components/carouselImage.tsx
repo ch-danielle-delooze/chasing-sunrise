@@ -52,6 +52,11 @@ const CarouselImage = ({ imagePath, containerWidth }: CarouselImageProps) => {
         alt="Image"
         height={isTouchDevice ? touchDeviceHeight : 400}
         src={`${cloudFrontUrl}${imagePath}`}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+        }}
         width={getImageWidth()}
         onLoad={(image) => onImageLoad(image.currentTarget)}
       />
