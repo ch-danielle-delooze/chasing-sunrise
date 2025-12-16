@@ -19,7 +19,7 @@ export default function Home() {
       day: "numeric",
     }),
     location: data?.metadata?.location,
-    description: data?.metadata?.description,
+    description: data?.metadata?.description ?? "",
   };
 
   return (
@@ -36,7 +36,6 @@ export default function Home() {
       <PictureOfTheDay
         date={pictureOfTheDay.date}
         description={pictureOfTheDay.description}
-        imageAlt={pictureOfTheDay.imageAlt}
         imageSrc={pictureOfTheDay.imageSrc}
         location={pictureOfTheDay.location}
       />

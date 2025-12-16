@@ -5,7 +5,6 @@ import FancyParagraph from "../fancyParagraph";
 
 interface PictureOfTheDayProps {
   imageSrc: string;
-  imageAlt: string;
   date?: string;
   description: string;
   location?: string;
@@ -13,7 +12,6 @@ interface PictureOfTheDayProps {
 
 export default function PictureOfTheDay({
   imageSrc,
-  imageAlt,
   date,
   description,
   location,
@@ -23,7 +21,7 @@ export default function PictureOfTheDay({
       {/* Image on the left */}
       <div className="flex-shrink-0">
         <Image
-          alt={imageAlt}
+          alt="Picture of the day"
           className="rounded-lg shadow-lg object-cover"
           height={500}
           src={imageSrc}
